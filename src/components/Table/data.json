@@ -1,0 +1,28 @@
+{
+  "stats": [
+    {
+      "name": "Mike",
+      "point": 1230,
+      "level": 80,
+      "star": 3
+    },
+    {
+      "name": "Alex",
+      "point": 24,
+      "level": 50,
+      "star": 2
+    },
+    {
+      "name": "Christopher",
+      "point": 0,
+      "level": 20,
+      "star": 1
+    },
+    {
+      "name": "John",
+      "point": -60,
+      "level": 0,
+      "star": 0
+    }
+  ]
+}
