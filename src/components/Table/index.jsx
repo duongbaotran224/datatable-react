@@ -6,7 +6,13 @@ import * as mockup from './data.json'
 import { Rating, LevelBar } from '../../components'
 
 const data = mockup["stats"];
-const headers = ["#", "Name", "Point", "Level", "Star", "Action"]
+const columns = [
+  { id: 'number', label: '#', width: 10 },
+  { id: 'name', label: 'Name', minWidth: 170 },
+  { id: 'point', label: 'Point', minWidth: 170, align: 'right' },
+  { id: 'level', label: 'Level\u00a0(100)', minWidth: 170, align: 'center' },
+  { id: 'star', label: 'Star', minWidth: 170, align: 'center' },
+];
 
 const ButtonIcon = ({ action, ...res }) => {
   return (
@@ -33,12 +39,13 @@ class Table extends Component {
         <S.TableHeader>
           <S.TableRow>
             {
-              headers.map((item, index) => (
-                <S.HeaderCell key={item} w={index === 0 && 20}>
-                  {item}
+              columns.map((item, index) => (
+                <S.HeaderCell key={item.id} align={item.align} w={item.width}>
+                  {item.label}
                 </S.HeaderCell>
               ))
             }
+            <S.HeaderCell align="center">Actions</S.HeaderCell>
           </S.TableRow>
         </S.TableHeader>
         <S.TableBody>
@@ -46,15 +53,15 @@ class Table extends Component {
             data.map((item, index) => {
               return (
                 <S.TableRow key={item.id}>
-                  <S.TableCell w={20}>{index + 1}</S.TableCell>
+                  <S.TableCell w={10}>{index + 1}</S.TableCell>
                   <S.TableCell>{item.name}</S.TableCell>
-                  <S.TableCell>
+                  <S.TableCell align="right">
                     <Point point={item.point} />
                   </S.TableCell>
-                  <S.TableCell>
+                  <S.TableCell align="center">
                     <LevelBar max={100} value={item.level} />
                   </S.TableCell>
-                  <S.TableCell>
+                  <S.TableCell align="center">
                     <Rating
                       max={5}
                       value={item.star}
