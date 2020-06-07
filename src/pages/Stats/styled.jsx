@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   margin: 60rem auto;
   padding: 20rem;
   font-size: 16rem;
+  overflow: hidden;
 `;
 
 export const Heading = styled.h1`
