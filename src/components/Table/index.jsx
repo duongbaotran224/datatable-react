@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faPen, faEye, faStar } from '@fortawesome/free-solid-svg-icons'
 import * as S from './styled';
-import * as mockup from './data.json'
+import { mockup } from './data.js'
 import { Rating, LevelBar } from '../../components'
 
 const data = mockup["stats"];
@@ -28,12 +28,29 @@ const Point = ({ point }) => {
 }
 
 class Table extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { //base css
+      show: false,
+    }
+  }
 
   handleClick = () => {
     console.log('chooai')
   }
 
+  triggerAnim = () => {
+    this.setState({
+      show: true
+    })
+  }
+
+  componentDidMount() {
+    setTimeout(this.triggerAnim, 100) // call the into animation
+  }
+
   render() {
+    const { show } = this.state
     return (
       <S.Table>
         <S.TableHeader>
@@ -52,7 +69,7 @@ class Table extends Component {
           {
             data.map((item, index) => {
               return (
-                <S.TableRow key={item.id}>
+                <S.TableRow key={item.id} index={index} show={show}>
                   <S.TableCell w={10}>{index + 1}</S.TableCell>
                   <S.TableCell>{item.name}</S.TableCell>
                   <S.TableCell align="right">
@@ -81,6 +98,7 @@ class Table extends Component {
             })
           }
         </S.TableBody>
+
       </S.Table>
     )
   }

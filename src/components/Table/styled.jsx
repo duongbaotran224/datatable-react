@@ -1,4 +1,14 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
+const fadeIn = keyframes`
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+`
 
 export const Table = styled.table`
   font-size: 14rem;
@@ -12,15 +22,28 @@ export const TableRow = styled.tr`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #2224261a;
+  background: #fff;
+  transition: all 0.3s ease;
+  opacity: 0;
   :hover{
     background: #f9fafb;
   };
+
+  ${({ show, index }) => show && css`
+  animation-name: ${fadeIn};
+  animation-delay: ${index * 0.1}s;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;`
+  };
+
 `;
 
 export const TableHeader = styled.thead`
   width: 100%;
   display: block;
   ${TableRow} {
+    opacity: 1;
     :hover {
       background: white
     }
@@ -28,7 +51,11 @@ export const TableHeader = styled.thead`
 `;
 
 export const HeaderCell = styled.th`
+  font-size: 12rem;
   font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #bdbdbd;
   padding: 15rem 20rem;
 
   flex-basis: ${(props) => css`${props.w ? props.w : 100}%`};;
@@ -37,19 +64,17 @@ export const HeaderCell = styled.th`
   text-align: ${(props) => css`${props.align ? props.align : "left"}`};
 `;
 
-
-
 export const TableBody = styled.tbody`
   display: block;
   width: 100%;
-  // overflow: auto;
-  // max-height: 380px;
-  //  position:relative;
+  overflow: auto;
+  max-height: 360px;
+  position:relative;
+
 `;
 
 export const TableCell = styled.td`
   padding: 15rem 20rem;
-
   flex-basis: ${(props) => css`${props.w ? props.w : 100}%`};;
   flex-grow: 1;
   display: block;

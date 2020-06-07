@@ -12,10 +12,12 @@ export const LevelContainer = styled.div`
 `;
 
 export const LevelComplete = styled.div`
-  width: ${({ value }) => css`${value}%`};
+  width: 0;
   height: 4px;
+  border-radius: 4px;
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
   background: ${({ value }) => css`
     ${value > 50 ? "#4caac8" : value < 50 ? "#ff9800" : "#65c5a6"}
   `};
-  border-radius: 4px
+  ${({ value }) => value && css`width: ${value}%`};
 `;

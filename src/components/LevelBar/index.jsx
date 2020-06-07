@@ -1,9 +1,13 @@
 
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as S from './styled';
 
 const LevelBar = ({ max, value }) => {
-  const completed = (value / max) * 100
+  const [completed, setCompleted] = useState(0);
+  useEffect(() => {
+    setCompleted(value / max * 100)
+  });
+  // const completed = (value / max) * 100
   return (
     <S.LevelContainer>
       <S.LevelComplete value={completed} />
