@@ -60,7 +60,9 @@ class SideBar extends React.Component {
     const { open } = this.state
     return (
       <S.SideBar>
-        <Burger isOpen={open} toggleMenu={this.toggleMenu} />
+        <S.SideTop>
+          <Burger isOpen={open} toggleMenu={this.toggleMenu} />
+        </S.SideTop>
         <NavList vertical={true} isOpen={open} toggleMenu={this.toggleMenu} />
       </S.SideBar>
     )

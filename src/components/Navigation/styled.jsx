@@ -90,3 +90,11 @@ export const Line = styled.div`
   background: #000;
   overflow: hidden;
 `;
+
+export const SideTop = styled.div`
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: flex-end;
+`;
+

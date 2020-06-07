@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as S from './styled';
 
 class Rating extends Component {
   constructor(props) {
@@ -34,9 +35,9 @@ class Rating extends Component {
           .fill(null)
           .map((item, index) => index + 1)
           .map((item, index) => (
-            <span key={item} className="rating-icon">
+            <S.Container key={item} className="rating-icon">
               <FontAwesomeIcon icon={icon} color="#eee" />
-            </span>
+            </S.Container>
           ))
         }
       </div>

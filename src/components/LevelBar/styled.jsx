@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components'
 
 export const LevelContainer = styled.div`
   width: 100%;
+  max-width: 150px;
+  margin: auto;
   height: 2px;
   border-radius: 2px;
   background: #eee;
