@@ -68,7 +68,7 @@ export const TableBody = styled.tbody`
   display: block;
   width: 100%;
   overflow: auto;
-  max-height: 360px;
+  max-height: 320px;
   position:relative;
 
 `;

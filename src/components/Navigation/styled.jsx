@@ -27,15 +27,16 @@ export const BasicNav = styled.div`
 export const Link = styled.a``;
 
 export const Logo = styled.img`
-  width: 150rem;
+  width: 120rem;
   height: auto;
+  object-fit: contain;
 `;
 
 export const NavItem = styled(NavLink).attrs({ activeClassName })`
   &.${activeClassName} {
     color: #000;
   };
-  font-size: 14rem;
+  font-size: 10rem;
   color: #6e6d7a;
   text-transform: uppercase;
   letter-spacing: .2em;

@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faPen, faEye, faStar } from '@fortawesome/free-solid-svg-icons'
 import * as S from './styled';
-import { mockup } from './data.js'
 import { Rating, LevelBar } from '../../components'
 
-const data = mockup["stats"];
 const columns = [
   { id: 'number', label: '#', width: 10 },
   { id: 'name', label: 'Name', minWidth: 170 },
@@ -46,11 +44,12 @@ class Table extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.triggerAnim, 100) // call the into animation
+    setTimeout(this.triggerAnim, 100)
   }
 
   render() {
     const { show } = this.state
+    const data = this.props.data || []
     return (
       <S.Table>
         <S.TableHeader>
