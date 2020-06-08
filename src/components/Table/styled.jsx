@@ -83,7 +83,7 @@ export const TableBody = styled.tbody`
 
 export const TableCell = styled.td`
   padding: 15rem 20rem;
-  flex-basis: ${(props) => css`${props.w ? props.w : 100}%`};;
+  flex-basis: ${(props) => css`${props.w ? `${props.w}%` : "100%"}`};
   flex-grow: 1;
   display: block;
   text-align: ${(props) => css`${props.align ? props.align : "center"}`};

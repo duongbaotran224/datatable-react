@@ -54,10 +54,6 @@ class Table extends Component {
     }
   }
 
-  handleClick = () => {
-    console.log('chooai')
-  }
-
   triggerAnim = () => {
     this.setState({
       show: true

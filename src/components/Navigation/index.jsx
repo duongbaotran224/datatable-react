@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import * as S from './styled';
+import logo from '../../logo.png'
 
 const links = [
   { href: ROUTES.ABOUT, title: "About" },
@@ -42,7 +43,7 @@ const NavList = ({ vertical, isOpen, toggleMenu }) => (
 const BasicNav = () => (
   <S.BasicNav>
     <S.Link as={Link} to={ROUTES.ABOUT}>
-      <S.Logo src="https://cinnamon.is/wp-content/themes/Cinnamon-2017/images/logo.png" />
+      <S.Logo src={logo} />
     </S.Link>
     <NavList />
   </S.BasicNav>
