@@ -1,22 +1,21 @@
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
-  margin: 60rem auto;
-  padding: 20rem;
+  margin: auto;
+  padding: 60rem 20rem;
   font-size: 16rem;
-  min-height: calc(100vh - 120rem);
+  min-height: 100vh;
   background: #fbfbfb;
-  // overflow: hidden;
 
   @media(max-width: 600px){
     background: #fff;
-    padding: 0;
+    padding: 60rem 0;
   }  
 `;
 
 export const Heading = styled.h1`
   font-size: 18rem;
-  margin-bottom: 20rem;
+  margin: 20rem 0;
 
   @media(max-width: 600px){
     padding: 0 20rem;

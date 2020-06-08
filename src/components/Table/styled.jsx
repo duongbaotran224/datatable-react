@@ -112,9 +112,6 @@ export const ButtonIcon = styled.button`
   }
 `;
 
-export const Point = styled.div`
-  color: ${(props => props.negative ? "red" : "black")}
-`;
 
 
 

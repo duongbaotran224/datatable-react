@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faPen, faEye, faStar } from '@fortawesome/free-solid-svg-icons'
 import * as S from './styled';
-import { Rating, LevelBar } from '../../components'
+import { Rating, LevelBar, Point } from '../../components'
 
 const columns = [
   { id: 'number', label: '#', width: 20 },
@@ -20,10 +20,13 @@ const ButtonIcon = ({ action, ...res }) => {
   )
 }
 
-const Point = ({ point }) => {
-  const isNegative = point < 0
-  return <S.Point negative={isNegative}>{point}</S.Point>
-}
+// TODO
+// const generateRow = (row) => {
+//   const listKeys = Object.keys(row);
+//   return listKeys.map(val => {
+//     return <S.TableCell key={val}>{row[val]}</S.TableCell>
+//   })
+// }
 
 const MobBody = ({ item, index, show }) => (
   <S.TableRow key={item.id} index={index} show={show}>
@@ -42,6 +45,34 @@ const MobBody = ({ item, index, show }) => (
       </span>
     </S.TableCell>
     <S.TableCell w={50}>...</S.TableCell>
+  </S.TableRow>
+)
+
+const DesBody = ({ item, index, show, deleteUser }) => (
+  <S.TableRow key={item.id} index={index} show={show}>
+    <S.TableCell w={20}>{index + 1}</S.TableCell>
+    <S.TableCell align="left">{item.name}</S.TableCell>
+    <S.TableCell w={50} align="right">
+      <Point point={item.point} />
+    </S.TableCell>
+    <S.TableCell w={50}>
+      <LevelBar max={100} value={item.level} />
+    </S.TableCell>
+    <S.TableCell w={50}>
+      <Rating
+        max={5}
+        value={item.star}
+        activeColor="rgb(254, 234, 130)"
+        icon={faStar}
+      />
+    </S.TableCell>
+    <S.TableCell w={50}>
+      <S.WrapIcons>
+        <ButtonIcon icon={faEye} />
+        <ButtonIcon icon={faPen} />
+        <ButtonIcon icon={faTimes} action={() => deleteUser(item.id)} />
+      </S.WrapIcons>
+    </S.TableCell>
   </S.TableRow>
 )
 
@@ -70,6 +101,7 @@ class Table extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.getScreenWidth);
   }
+
   getScreenWidth = () => {
     this.setState({
       screenWidth: window.innerWidth
@@ -100,31 +132,13 @@ class Table extends Component {
                 return <MobBody key={item.id} item={item} index={index} show={show} />
               }
               else return (
-                <S.TableRow key={item.id} index={index} show={show}>
-                  <S.TableCell w={20}>{index + 1}</S.TableCell>
-                  <S.TableCell align="left">{item.name}</S.TableCell>
-                  <S.TableCell w={50} align="right">
-                    <Point point={item.point} />
-                  </S.TableCell>
-                  <S.TableCell w={50}>
-                    <LevelBar max={100} value={item.level} />
-                  </S.TableCell>
-                  <S.TableCell w={50}>
-                    <Rating
-                      max={5}
-                      value={item.star}
-                      activeColor="rgb(254, 234, 130)"
-                      icon={faStar}
-                    />
-                  </S.TableCell>
-                  <S.TableCell w={50}>
-                    <S.WrapIcons>
-                      <ButtonIcon icon={faEye} />
-                      <ButtonIcon icon={faPen} />
-                      <ButtonIcon icon={faTimes} />
-                    </S.WrapIcons>
-                  </S.TableCell>
-                </S.TableRow>
+                <DesBody
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  show={show}
+                  deleteUser={this.props.deleteUser}
+                />
               )
             })
           }

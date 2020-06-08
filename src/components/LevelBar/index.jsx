@@ -4,10 +4,11 @@ import * as S from './styled';
 
 const LevelBar = ({ max, value }) => {
   const [completed, setCompleted] = useState(0);
+
   useEffect(() => {
     setCompleted(value / max * 100)
   });
-  // const completed = (value / max) * 100
+
   return (
     <S.LevelContainer>
       <S.LevelComplete value={completed} />

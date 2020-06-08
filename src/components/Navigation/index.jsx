@@ -10,7 +10,7 @@ const links = [
   { href: ROUTES.CONTACT, title: "Contact" },
 ]
 
-const Burger = ({ isOpen, toggleMenu }) => (
+const Burger = ({ toggleMenu }) => (
   <S.Burger onClick={toggleMenu}>
     <S.Line />
     <S.Line />

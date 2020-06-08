@@ -3,6 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 const activeClassName = 'nav-item-active'
 
+export const Link = styled.a``;
+export const Logo = styled.img`
+  width: 120rem;
+  height: auto;
+  object-fit: contain;
+`;
+
 export const Navbar = styled.nav`
   z-index: 100;
   position: fixed;
@@ -24,12 +31,21 @@ export const BasicNav = styled.div`
   background: white;
 `;
 
-export const Link = styled.a``;
+export const SideBar = styled.aside`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
 
-export const Logo = styled.img`
-  width: 120rem;
-  height: auto;
-  object-fit: contain;
+export const SideTop = styled.div`
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const NavItem = styled(NavLink).attrs({ activeClassName })`
@@ -74,16 +90,6 @@ export const List = styled.ul`
   };
 `;
 
-export const SideBar = styled.aside`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-
 export const Burger = styled.button`
   transition: all .5s ease;
   padding: 20rem;
@@ -97,10 +103,5 @@ export const Line = styled.div`
   overflow: hidden;
 `;
 
-export const SideTop = styled.div`
-  width: 100%;
-  background: #fff;
-  display: flex;
-  justify-content: flex-end;
-`;
+
 
