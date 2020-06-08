@@ -6,7 +6,14 @@ export const Wrapper = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  box-shadow: 0px 2px 1px -4px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  background: #fff;
+
+  @media(max-width: 600px){
+    padding: 0;
+    max-height: 100vh;
+    box-shadow: none
+  }  
 `;
 
 export const Section = styled.div`
@@ -21,6 +28,7 @@ export const ButtonAdd = styled.button`
   width: 120rem;
   border-radius: 5px;
   min-height: 40px;
+  text-align: center;
 
   display: flex;
   align-items: center;
@@ -33,5 +41,10 @@ export const ButtonAdd = styled.button`
 
   &:hover {
     background: #65c5a6;
+  };
+
+
+  @media(max-width: 600px){
+    margin-right: 20rem
   }
 `

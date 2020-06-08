@@ -17,4 +17,8 @@ export const Title = styled.p`
 export const Desc = styled.p`
   color: #bdbdbd;
   font-size: 12rem;
+
+  @media(max-width: 600px){
+    display: none
+  }  
 `

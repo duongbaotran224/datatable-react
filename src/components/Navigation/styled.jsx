@@ -37,7 +37,7 @@ export const NavItem = styled(NavLink).attrs({ activeClassName })`
     color: #000;
   };
   font-size: 10rem;
-  color: #6e6d7a;
+  color: #bdbdbd;
   text-transform: uppercase;
   letter-spacing: .2em;
   padding: 0 15rem;
@@ -57,7 +57,12 @@ export const List = styled.ul`
     justify-content: center;
 
     > * {
-      margin-bottom: 10rem
+      margin-bottom: 20rem
+    };
+
+    ${NavItem} {
+      font-size: 20rem;
+      font-weight: 700;
     }
   `};
 

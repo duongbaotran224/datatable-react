@@ -5,18 +5,18 @@ import * as S from './styled';
 import { Rating, LevelBar } from '../../components'
 
 const columns = [
-  { id: 'number', label: '#', width: 10 },
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'point', label: 'Point', minWidth: 170, align: 'right' },
-  { id: 'level', label: 'Level\u00a0(100)', minWidth: 170, align: 'center' },
-  { id: 'star', label: 'Star', minWidth: 170, align: 'center' },
+  { id: 'number', label: '#', width: 20 },
+  { id: 'name', label: 'Name', align: "left" },
+  { id: 'point', label: 'Point', width: 50, align: 'right' },
+  { id: 'level', label: 'Level', width: 50 },
+  { id: 'star', label: 'Star', width: 50 },
 ];
 
 const ButtonIcon = ({ action, ...res }) => {
   return (
-    <button onClick={action}>
-      <FontAwesomeIcon {...res} />
-    </button>
+    <S.ButtonIcon onClick={action}>
+      <FontAwesomeIcon {...res} color="#bdbdbd" />
+    </S.ButtonIcon>
   )
 }
 
@@ -25,11 +25,32 @@ const Point = ({ point }) => {
   return <S.Point negative={isNegative}>{point}</S.Point>
 }
 
+const MobBody = ({ item, index, show }) => (
+  <S.TableRow key={item.id} index={index} show={show}>
+    <S.TableCell w={20}>{index + 1}</S.TableCell>
+    <S.TableCell align="left">{item.name}</S.TableCell>
+    <S.TableCell w={50} align="right">
+      <Point point={item.point} />
+    </S.TableCell>
+    <S.TableCell w={50}>
+      {item.level}
+    </S.TableCell>
+    <S.TableCell w={50}>
+      <span>
+        {item.star}
+        <FontAwesomeIcon icon={faStar} color="rgb(254, 234, 130)" style={{ marginLeft: '5rem' }} />
+      </span>
+    </S.TableCell>
+    <S.TableCell w={50}>...</S.TableCell>
+  </S.TableRow>
+)
+
 class Table extends Component {
   constructor(props) {
     super(props)
-    this.state = { //base css
+    this.state = {
       show: false,
+      screenWidth: 0
     }
   }
 
@@ -45,10 +66,22 @@ class Table extends Component {
 
   componentDidMount() {
     setTimeout(this.triggerAnim, 100)
+
+    this.getScreenWidth();
+    window.addEventListener('resize', this.getScreenWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.getScreenWidth);
+  }
+  getScreenWidth = () => {
+    this.setState({
+      screenWidth: window.innerWidth
+    })
   }
 
   render() {
-    const { show } = this.state
+    const { show, screenWidth } = this.state
     const data = this.props.data || []
     return (
       <S.Table>
@@ -61,23 +94,26 @@ class Table extends Component {
                 </S.HeaderCell>
               ))
             }
-            <S.HeaderCell align="center">Actions</S.HeaderCell>
+            <S.HeaderCell w={50} align="center">Actions</S.HeaderCell>
           </S.TableRow>
         </S.TableHeader>
         <S.TableBody>
           {
             data.map((item, index) => {
-              return (
+              if (screenWidth < 600) {
+                return <MobBody key={item.id} item={item} index={index} show={show} />
+              }
+              else return (
                 <S.TableRow key={item.id} index={index} show={show}>
-                  <S.TableCell w={10}>{index + 1}</S.TableCell>
-                  <S.TableCell>{item.name}</S.TableCell>
-                  <S.TableCell align="right">
+                  <S.TableCell w={20}>{index + 1}</S.TableCell>
+                  <S.TableCell align="left">{item.name}</S.TableCell>
+                  <S.TableCell w={50} align="right">
                     <Point point={item.point} />
                   </S.TableCell>
-                  <S.TableCell align="center">
+                  <S.TableCell w={50}>
                     <LevelBar max={100} value={item.level} />
                   </S.TableCell>
-                  <S.TableCell align="center">
+                  <S.TableCell w={50}>
                     <Rating
                       max={5}
                       value={item.star}
@@ -85,11 +121,11 @@ class Table extends Component {
                       icon={faStar}
                     />
                   </S.TableCell>
-                  <S.TableCell>
+                  <S.TableCell w={50}>
                     <S.WrapIcons>
-                      <ButtonIcon icon={faEye} color="gray" action={this.handleClick} />
-                      <ButtonIcon icon={faPen} color="gray" action={this.handleClick} />
-                      <ButtonIcon icon={faTimes} color="gray" action={this.handleClick} />
+                      <ButtonIcon icon={faEye} />
+                      <ButtonIcon icon={faPen} />
+                      <ButtonIcon icon={faTimes} />
                     </S.WrapIcons>
                   </S.TableCell>
                 </S.TableRow>
@@ -97,7 +133,6 @@ class Table extends Component {
             })
           }
         </S.TableBody>
-
       </S.Table>
     )
   }

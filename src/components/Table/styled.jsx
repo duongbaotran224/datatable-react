@@ -58,18 +58,26 @@ export const HeaderCell = styled.th`
   color: #bdbdbd;
   padding: 15rem 20rem;
 
-  flex-basis: ${(props) => css`${props.w ? props.w : 100}%`};;
+  flex-basis: ${(props) => css`${props.w ? props.w : 100}%`};
   flex-grow: 1;
   display: block;
-  text-align: ${(props) => css`${props.align ? props.align : "left"}`};
+  text-align: ${(props) => css`${props.align ? props.align : "center"}`};
+
+  @media(max-width: 600px){
+    padding: 15rem 5rem;
+  }  
 `;
 
 export const TableBody = styled.tbody`
   display: block;
   width: 100%;
   overflow: auto;
-  max-height: 320px;
-  position:relative;
+  max-height: 260px;
+
+  @media(max-width: 600px){
+    max-height: 300px;
+    border-bottom: 1px solid #eee;
+  }  
 
 `;
 
@@ -78,7 +86,11 @@ export const TableCell = styled.td`
   flex-basis: ${(props) => css`${props.w ? props.w : 100}%`};;
   flex-grow: 1;
   display: block;
-  text-align: ${(props) => css`${props.align ? props.align : "left"}`};
+  text-align: ${(props) => css`${props.align ? props.align : "center"}`};
+
+  @media(max-width: 600px){
+    padding: 15rem 5rem;
+  }  
 `;
 
 export const WrapIcons = styled.div`
@@ -91,9 +103,19 @@ export const WrapIcons = styled.div`
   }
 `;
 
+export const ButtonIcon = styled.button`
+  :hover {
+    > * {
+      transition: all 0.5s ease;
+      color: #000
+    }
+  }
+`;
+
 export const Point = styled.div`
   color: ${(props => props.negative ? "red" : "black")}
 `;
+
 
 
 

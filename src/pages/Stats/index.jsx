@@ -7,7 +7,7 @@ import Fade from 'react-reveal/Fade';
 const Stats = () => (
   <S.Wrapper>
     <Fade>
-      {/* <S.Heading>Stats</S.Heading> */}
+      <S.Heading>Stats</S.Heading>
       <DataTable />
     </Fade>
   </S.Wrapper>
