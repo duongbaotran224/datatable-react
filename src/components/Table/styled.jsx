@@ -75,7 +75,7 @@ export const TableBody = styled.tbody`
   max-height: 260px;
 
   @media(max-width: 600px){
-    max-height: 300px;
+    max-height: 190px;
     border-bottom: 1px solid #eee;
   }  
 
